@@ -8,6 +8,8 @@ const {
   verifyPassword 
 } = require('../../utils/argonEncoder');
 const { encryptJwt } = require('../../utils/jwtEncrypter');
+const ObjectId = require('mongoose').Types.ObjectId;
+
 
 class UsersController {
   async register (req, res) {
@@ -92,7 +94,49 @@ class UsersController {
         });
 
     } catch (error) {
-      sendError(res, 500)
+      sendError(res, 500);
+    }
+  }
+
+  async getById (req, res) {
+    try {      
+      const { id } = req.params;
+
+      if (!ObjectId.isValid(id)) return sendError(res, 400, 
+        'Invalid ID value'
+      );
+
+      const userData = await 
+        User
+          .findById(id)
+          .select(
+            '-password -email -__v -registeredAt'
+          );
+
+      res
+        .status(200)
+        .json(userData);
+
+    } catch (error) {
+      sendError(res, 500);
+    }
+  }
+
+  async getMe (req, res) {
+    try {
+      const { userId } = req;
+
+      const userData = await 
+        User
+          .findById(userId)
+          .select('-password');
+
+      res
+        .status(200)
+        .json(userData);
+
+    } catch (error) {
+      sendError(res, 500);
     }
   }
 }
