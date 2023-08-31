@@ -8,13 +8,13 @@ const onServerStarted = (PORT) => {
 
 const log = (message) => {
   console.log(
-    "\x1b[34mHAINY: \x1b[0m" + message
+    "\u001b[47m\u001b[30m LOG \x1b[0m " + message
   );
 };
 
 const error = (message) => {
   console.log(
-    '\u001b[31mERROR: \x1b[0m' + message
+    '\u001b[41m ERROR \x1b[0m ' + message
   );
 };
 

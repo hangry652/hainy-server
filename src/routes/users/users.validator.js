@@ -6,6 +6,12 @@ const registerValidator = [
   body('password').isLength({ min: 8, max: 30 })
 ];
 
+const loginValidator = [
+  body('username').isLength({ min: 5, max: 30 }),
+  body('password').isLength({ min: 8, max: 30 })
+];
+
 module.exports = {
-  registerValidator
+  registerValidator,
+  loginValidator
 }
