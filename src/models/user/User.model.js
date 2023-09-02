@@ -16,6 +16,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  profilePicture: String,
   status: {
     type: String,
     default: 'active'

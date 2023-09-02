@@ -4,7 +4,7 @@ const { decryptJwt } = require('./jwtEncrypter');
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization;
-  
+
   if (!token) return sendError(res, 401,
     'Missing "authorization" header'  
   );
